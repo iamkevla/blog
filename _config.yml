@@ -6,7 +6,7 @@
 title: krackas.com
 subtitle: Insanely Good...
 description:
-author: Kevin Vlahos
+author: Kevla
 email: kevla@krackas.com
 language:
 
@@ -86,4 +86,5 @@ exclude_generator:
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: github
+  repo: https://github.com/iamkevla/iamkevla.github.com.git

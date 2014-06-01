@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html ng-app="myApp" >
+	<head>
+		<meta charset = "utf-8" >
+		<title>Karel by Kevla</title>
+		<link rel="stylesheet" href="css/karel.css">
+		<link rel="stylesheet" href="css/codemirror.css">
+	</head>
+	<body ng-controller="mainCtrl">
+		<h1>Karel by Kevla</h1>
+
+		<div>
+			<div id="btns" ><button ng-click="play()" >Run</button> <button ng-click="init()" >Reset</button></div>
+			<form>
+				<textarea id="code" ></textarea>
+			</form>
+		</div>
+		<div id="btmPanel" >
+			<div id='matrix' >
+				<table>
+					<tr ng-repeat="row in world  track by $index"  style='height:30px;' >
+						<td ng-repeat="item in row  track by $index" >
+							<div ng-switch on="(($parent.$index===karel.position[1]) && ($index===karel.position[0]))" >
+								<span ng-switch-when="true">K</span>
+								<span ng-switch-default >{{item}}<span>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id='karelinfo'>
+				<p>Position: {{karel.position[0]}}, {{karel.position[1]}}<p>
+				<p>Direction: {{karel.direction}}<p>
+				<p>Beepers: {{karel.beepers}}<p>
+			</div>
+
+			<div id="instructions" >
+				<h3>karel can...</h3>
+				<div class="lstPanel" >
+					<ul>
+						<li>move();</li>
+						<li>turnLeft();</li>
+						<li>pickBeeper();</li>
+						<li>putBeeper();</li>
+					</ul>
+				</div>
+				<div class="lstPanel"  >
+					<ul>
+						<li>frontIsClear()</li>
+						<li>leftIsClear()</li>
+						<li>rightIsClear()</li>
+						<li>beepersPresent()</li>
+						<li>facingNorth()</li>
+						<li>facingSouth()</li>
+						<li>facingEast()</li>
+						<li>facingWest()</li>
+					</ul>
+				</div>
+				<div class="lstPanel"  >
+					<ul>
+						<li>frontIsBlocked()</li>
+						<li>leftIsBlocked()</li>
+						<li>rightIsBlocked()</li>
+						<li>noBeepersPresent()</li>
+						<li>notFacingNorth()</li>
+						<li>notFacingSouth()</li>
+						<li>notFacingEast()</li>
+						<li>notFacingWest()</li>
+					</ul>
+				</div>
+				<div id="longlist" class="lstPanel" style="width:220px;" >
+					<ul>
+						<li style="word-wrap: break-word" >var func = function () { statements };</li>
+						<li style="word-wrap: break-word" >if ( condition ) { statements } else { statements }</li>
+						<li style="word-wrap: break-word" >while ( condition ) { statements }</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!-- javascript code here -->
+		<script type="text/javascript" src="lib/codemirror/codemirror.js"></script>
+    	<script type="text/javascript">
+			var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+			  	mode: "javascript",
+			  	lineNumbers: true
+			});
+		</script>
+		<script type="text/javascript" src="lib/angular/angular.min.js" ></script>
+		<script type="text/javascript" src="js/app.js" ></script>
+		<script type="text/javascript" src="js/services.js" ></script>
+		<script type="text/javascript" src="js/controllers.js" ></script>
+
+	</body>
+</html>
